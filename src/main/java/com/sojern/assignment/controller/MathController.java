@@ -1,6 +1,8 @@
 package com.sojern.assignment.controller;
 
 import com.sojern.assignment.api.MathApi;
+import com.sojern.assignment.model.MaxRequest;
+import com.sojern.assignment.model.MaxResponse;
 import com.sojern.assignment.model.MinRequest;
 import com.sojern.assignment.model.MinResponse;
 import com.sojern.assignment.service.MathService;
@@ -24,5 +26,12 @@ public class MathController implements MathApi {
     public ResponseEntity<MinResponse> calculateMinimums(@RequestParam List<Integer> numbers, @RequestParam Integer quantifier) {
         MinRequest minRequest = new MinRequest(numbers, quantifier);
         return ResponseEntity.ok(mathService.calculateMin(minRequest));
+    }
+
+    @Override
+    @GetMapping("/max")
+    public ResponseEntity<MaxResponse> calculateMaximums(@RequestParam List<Integer> numbers, @RequestParam Integer quantifier) {
+        MaxRequest maxRequest = new MaxRequest(numbers, quantifier);
+        return ResponseEntity.ok(mathService.calculateMax(maxRequest));
     }
 }

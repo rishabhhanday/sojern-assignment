@@ -1,6 +1,8 @@
 package com.sojern.assignment.service.impl;
 
 import com.sojern.assignment.exception.InvalidMinRequestException;
+import com.sojern.assignment.model.MaxRequest;
+import com.sojern.assignment.model.MaxResponse;
 import com.sojern.assignment.model.MinRequest;
 import com.sojern.assignment.model.MinResponse;
 import com.sojern.assignment.service.MathService;
@@ -20,9 +22,8 @@ public class MathServiceImpl implements MathService {
 
         List<Integer> numbers = minRequest.getNumbers();
 
-        sort(numbers.stream()
-                .filter(Objects::nonNull)
-                .collect(Collectors.toList()), Integer::compareTo);
+        numbers = numbers.stream().filter(Objects::nonNull).collect(Collectors.toList());
+        numbers.sort(Integer::compareTo);
 
         List<Integer> minNumbers = new ArrayList<>();
         for (int i = 0; i < minRequest.getQuantifier(); i++) {
@@ -35,8 +36,23 @@ public class MathServiceImpl implements MathService {
         return minResponse;
     }
 
-    private void sort(List<Integer> numbers, Comparator<Integer> comparator) {
-        numbers.sort(comparator);
+    @Override
+    public MaxResponse calculateMax(MaxRequest maxRequest) {
+        validate(maxRequest.getNumbers(), maxRequest.getQuantifier());
+
+        List<Integer> numbers = maxRequest.getNumbers();
+        numbers = numbers.stream().filter(Objects::nonNull).collect(Collectors.toList());
+        numbers.sort(Comparator.reverseOrder());
+
+        List<Integer> minNumbers = new ArrayList<>();
+        for (int i = 0; i < maxRequest.getQuantifier(); i++) {
+            minNumbers.add(numbers.get(i));
+        }
+
+        MaxResponse maxResponse = new MaxResponse();
+        maxResponse.setNumbers(minNumbers);
+
+        return maxResponse;
     }
 
 
