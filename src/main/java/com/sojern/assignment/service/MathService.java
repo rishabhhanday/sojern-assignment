@@ -7,4 +7,5 @@ public interface MathService {
     MaxResponse calculateMax(MaxRequest maxRequest);
 
     AvgResponse calculateAverage(AvgRequest avgRequest);
+    MedianResponse calculateMedian(MedianRequest medianRequest);
 }

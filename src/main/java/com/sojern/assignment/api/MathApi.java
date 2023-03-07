@@ -2,6 +2,7 @@ package com.sojern.assignment.api;
 
 import com.sojern.assignment.model.AvgResponse;
 import com.sojern.assignment.model.MaxResponse;
+import com.sojern.assignment.model.MedianResponse;
 import com.sojern.assignment.model.MinResponse;
 import org.springframework.http.ResponseEntity;
 
@@ -13,4 +14,5 @@ public interface MathApi {
     ResponseEntity<MaxResponse> calculateMaximums(List<Integer> numbers, Integer quantifier);
 
     ResponseEntity<AvgResponse> calculateAverage(List<Integer> numbers);
+    ResponseEntity<MedianResponse> calculateMedian(List<Integer> numbers);
 }

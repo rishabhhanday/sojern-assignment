@@ -65,6 +65,29 @@ public class MathServiceImpl implements MathService {
         return avgResponse;
     }
 
+    @Override
+    public MedianResponse calculateMedian(MedianRequest medianRequest) {
+        validate(medianRequest.getNumbers());
+
+        List<Integer> numbers = medianRequest.getNumbers();
+        numbers = numbers.stream().filter(Objects::nonNull).collect(Collectors.toList());
+        numbers.sort(Integer::compareTo);
+
+        Double median;
+        if (numbers.size() % 2 != 0) {
+            median = Double.valueOf(numbers.get(numbers.size() / 2));
+        } else {
+            int midIndex = numbers.size() / 2;
+            Integer m1 = numbers.get(midIndex);
+            Integer m2 = numbers.get(midIndex - 1);
+            median = (m1 + m2) / 2.0;
+        }
+
+        MedianResponse medianResponse = new MedianResponse();
+        medianResponse.setMedian(median);
+        return medianResponse;
+    }
+
 
     private void validate(List<Integer> numbers, Integer quantifier) {
         if (numbers.isEmpty()) {

@@ -4,6 +4,7 @@ import com.sojern.assignment.api.MathApi;
 import com.sojern.assignment.exception.InvalidRequestException;
 import com.sojern.assignment.model.AvgResponse;
 import com.sojern.assignment.model.MaxResponse;
+import com.sojern.assignment.model.MedianResponse;
 import com.sojern.assignment.model.MinResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -47,6 +48,15 @@ public class MathApiTest {
 
         Assertions.assertEquals(200, actualResponse.getStatusCodeValue());
         Assertions.assertEquals(16.5, actualResponse.getBody().getAverage());
+    }
+
+    @Test
+    public void testMedianApi() {
+        List<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2));
+        ResponseEntity<MedianResponse> actualResponse = mathApi.calculateMedian(numbers);
+
+        Assertions.assertEquals(200, actualResponse.getStatusCodeValue());
+        Assertions.assertEquals(1.5, actualResponse.getBody().getMedian());
     }
 
     @Test

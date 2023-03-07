@@ -40,4 +40,13 @@ public class MathController implements MathApi {
         avgRequest.setNumbers(numbers);
         return ResponseEntity.ok(mathService.calculateAverage(avgRequest));
     }
+
+    @Override
+    @GetMapping("/median")
+    public ResponseEntity<MedianResponse> calculateMedian(@RequestParam List<Integer> numbers) {
+        MedianRequest medianRequest = new MedianRequest();
+        medianRequest.setNumbers(numbers);
+
+        return ResponseEntity.ok(mathService.calculateMedian(medianRequest));
+    }
 }
