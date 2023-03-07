@@ -1,7 +1,8 @@
 package com.sojern.assignment;
 
 import com.sojern.assignment.api.MathApi;
-import com.sojern.assignment.exception.InvalidMinRequestException;
+import com.sojern.assignment.exception.InvalidRequestException;
+import com.sojern.assignment.model.AvgResponse;
 import com.sojern.assignment.model.MaxResponse;
 import com.sojern.assignment.model.MinResponse;
 import org.junit.jupiter.api.Assertions;
@@ -15,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @SpringBootTest
-public class ApiTest {
+public class MathApiTest {
     @Autowired
     private MathApi mathApi;
 
@@ -40,10 +41,19 @@ public class ApiTest {
     }
 
     @Test
+    public void testAvgApi() {
+        List<Integer> numbers = new ArrayList<>(Arrays.asList(22, 11));
+        ResponseEntity<AvgResponse> actualResponse = mathApi.calculateAverage(numbers);
+
+        Assertions.assertEquals(200, actualResponse.getStatusCodeValue());
+        Assertions.assertEquals(16.5, actualResponse.getBody().getAverage());
+    }
+
+    @Test
     public void testMinApiForInvalidQuantifier() {
         List<Integer> numbers = new ArrayList<>(Arrays.asList(22, 11, 78, 1, 5));
         Integer quantifier = 99;
 
-        Assertions.assertThrows(InvalidMinRequestException.class, () -> mathApi.calculateMaximums(numbers, quantifier));
+        Assertions.assertThrows(InvalidRequestException.class, () -> mathApi.calculateMaximums(numbers, quantifier));
     }
 }

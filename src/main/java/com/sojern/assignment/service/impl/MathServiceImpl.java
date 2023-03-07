@@ -1,10 +1,8 @@
 package com.sojern.assignment.service.impl;
 
-import com.sojern.assignment.exception.InvalidMinRequestException;
-import com.sojern.assignment.model.MaxRequest;
-import com.sojern.assignment.model.MaxResponse;
-import com.sojern.assignment.model.MinRequest;
-import com.sojern.assignment.model.MinResponse;
+import com.sojern.assignment.exception.InvalidRequestException;
+import com.sojern.assignment.model.*;
+import com.sojern.assignment.service.AvgRequest;
 import com.sojern.assignment.service.MathService;
 import org.springframework.stereotype.Service;
 
@@ -55,12 +53,30 @@ public class MathServiceImpl implements MathService {
         return maxResponse;
     }
 
+    @Override
+    public AvgResponse calculateAverage(AvgRequest avgRequest) {
+        validate(avgRequest.getNumbers());
+
+        Integer sum = avgRequest.getNumbers().stream().reduce(0, Integer::sum);
+        Double avg = (sum / (double) avgRequest.getNumbers().size());
+
+        AvgResponse avgResponse = new AvgResponse();
+        avgResponse.setAverage(avg);
+        return avgResponse;
+    }
+
 
     private void validate(List<Integer> numbers, Integer quantifier) {
         if (numbers.isEmpty()) {
-            throw new InvalidMinRequestException("Numbers cannot be empty");
+            throw new InvalidRequestException("Numbers cannot be empty");
         } else if (quantifier > numbers.size()) {
-            throw new InvalidMinRequestException("Quantifier must be less than or equals to numbers size.");
+            throw new InvalidRequestException("Quantifier must be less than or equals to numbers size.");
+        }
+    }
+
+    private void validate(List<Integer> numbers) {
+        if (numbers.isEmpty()) {
+            throw new InvalidRequestException("Numbers cannot be empty");
         }
     }
 }

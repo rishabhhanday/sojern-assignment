@@ -1,10 +1,8 @@
 package com.sojern.assignment.controller;
 
 import com.sojern.assignment.api.MathApi;
-import com.sojern.assignment.model.MaxRequest;
-import com.sojern.assignment.model.MaxResponse;
-import com.sojern.assignment.model.MinRequest;
-import com.sojern.assignment.model.MinResponse;
+import com.sojern.assignment.model.*;
+import com.sojern.assignment.service.AvgRequest;
 import com.sojern.assignment.service.MathService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -33,5 +31,13 @@ public class MathController implements MathApi {
     public ResponseEntity<MaxResponse> calculateMaximums(@RequestParam List<Integer> numbers, @RequestParam Integer quantifier) {
         MaxRequest maxRequest = new MaxRequest(numbers, quantifier);
         return ResponseEntity.ok(mathService.calculateMax(maxRequest));
+    }
+
+    @Override
+    @GetMapping("/avg")
+    public ResponseEntity<AvgResponse> calculateAverage(@RequestParam List<Integer> numbers) {
+        AvgRequest avgRequest = new AvgRequest();
+        avgRequest.setNumbers(numbers);
+        return ResponseEntity.ok(mathService.calculateAverage(avgRequest));
     }
 }
