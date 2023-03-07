@@ -2,7 +2,7 @@ package com.sojern.assignment.service.impl;
 
 import com.sojern.assignment.exception.InvalidRequestException;
 import com.sojern.assignment.model.*;
-import com.sojern.assignment.service.AvgRequest;
+import com.sojern.assignment.model.AvgRequest;
 import com.sojern.assignment.service.MathService;
 import org.springframework.stereotype.Service;
 

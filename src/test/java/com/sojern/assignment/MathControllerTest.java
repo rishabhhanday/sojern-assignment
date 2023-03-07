@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @SpringBootTest
-public class MathApiTest {
+public class MathControllerTest {
     @Autowired
     private MathApi mathApi;
 
