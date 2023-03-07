@@ -2,7 +2,7 @@ package com.sojern.assignment.controller;
 
 import com.sojern.assignment.api.MathApi;
 import com.sojern.assignment.model.*;
-import com.sojern.assignment.service.AvgRequest;
+import com.sojern.assignment.model.AvgRequest;
 import com.sojern.assignment.service.MathService;
 import com.sun.istack.internal.NotNull;
 import lombok.AllArgsConstructor;

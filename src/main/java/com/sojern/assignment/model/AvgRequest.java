@@ -1,4 +1,4 @@
-package com.sojern.assignment.service;
+package com.sojern.assignment.model;
 
 import lombok.Data;
 
