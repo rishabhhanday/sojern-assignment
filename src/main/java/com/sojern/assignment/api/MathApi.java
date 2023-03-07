@@ -11,6 +11,8 @@ public interface MathApi {
     ResponseEntity<MaxResponse> calculateMaximums(List<Integer> numbers, Integer quantifier);
 
     ResponseEntity<AvgResponse> calculateAverage(List<Integer> numbers);
+
     ResponseEntity<MedianResponse> calculateMedian(List<Integer> numbers);
+
     ResponseEntity<PercentileResponse> calculatePercentile(List<Integer> numbers, Integer quantifier);
 }
