@@ -2,9 +2,7 @@ package com.sojern.assignment.controller;
 
 import com.sojern.assignment.api.MathApi;
 import com.sojern.assignment.model.*;
-import com.sojern.assignment.model.AvgRequest;
 import com.sojern.assignment.service.MathService;
-import com.sun.istack.internal.NotNull;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -12,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
@@ -22,14 +21,14 @@ public class MathController implements MathApi {
 
     @GetMapping("/min")
     @Override
-    public ResponseEntity<MinResponse> calculateMinimums(@RequestParam List<Integer> numbers, @NotNull @RequestParam Integer quantifier) {
+    public ResponseEntity<MinResponse> calculateMinimums(@RequestParam List<Integer> numbers,  @RequestParam Integer quantifier) {
         MinRequest minRequest = new MinRequest(numbers, quantifier);
         return ResponseEntity.ok(mathService.calculateMin(minRequest));
     }
 
     @Override
     @GetMapping("/max")
-    public ResponseEntity<MaxResponse> calculateMaximums(@RequestParam List<Integer> numbers, @NotNull @RequestParam Integer quantifier) {
+    public ResponseEntity<MaxResponse> calculateMaximums(@RequestParam List<Integer> numbers,  @RequestParam Integer quantifier) {
         MaxRequest maxRequest = new MaxRequest(numbers, quantifier);
         return ResponseEntity.ok(mathService.calculateMax(maxRequest));
     }
@@ -53,7 +52,7 @@ public class MathController implements MathApi {
 
     @Override
     @GetMapping("/percentile")
-    public ResponseEntity<PercentileResponse> calculatePercentile(@RequestParam List<Integer> numbers, @NotNull @RequestParam Integer quantifier) {
+    public ResponseEntity<PercentileResponse> calculatePercentile(@RequestParam List<Integer> numbers,  @RequestParam Integer quantifier) {
         PercentileRequest percentileRequest = new PercentileRequest();
         percentileRequest.setNumbers(numbers);
         percentileRequest.setQuantifier(quantifier);
