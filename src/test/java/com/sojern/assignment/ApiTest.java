@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -54,5 +54,40 @@ public class ApiTest {
                                 .param("numbers", "1,2"))
                 .andDo(print()).andExpect(status().isOk())
                 .andExpect(jsonPath("$.average").value("1.5"));
+    }
+
+    @Test
+    public void testMedianApi() throws Exception {
+        this.mockMvc.perform(
+                        get("/median")
+                                .param("numbers", "1,2"))
+                .andDo(print()).andExpect(status().isOk())
+                .andExpect(jsonPath("$.median").value("1.5"));
+    }
+
+    @Test
+    public void testPercentileApi() throws Exception {
+        this.mockMvc.perform(
+                        get("/percentile")
+                                .param("numbers", "12,15,17,18,26,34,57,65,68,69")
+                                .param("quantifier", "25"))
+                .andDo(print()).andExpect(status().isOk())
+                .andExpect(jsonPath("$.percentile").value("17"));
+    }
+
+    @Test
+    public void testPingApi() throws Exception {
+        this.mockMvc.perform(
+                        get("/ping"))
+                .andDo(print()).andExpect(status().isOk())
+                .andExpect(jsonPath("$.status").value("OK"));
+    }
+
+    @Test
+    public void testImageApi() throws Exception {
+        this.mockMvc.perform(
+                        get("/img"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.IMAGE_GIF));
     }
 }
