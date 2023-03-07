@@ -4,6 +4,7 @@ import com.sojern.assignment.api.MathApi;
 import com.sojern.assignment.model.*;
 import com.sojern.assignment.service.AvgRequest;
 import com.sojern.assignment.service.MathService;
+import com.sun.istack.internal.NotNull;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -21,14 +22,14 @@ public class MathController implements MathApi {
 
     @GetMapping("/min")
     @Override
-    public ResponseEntity<MinResponse> calculateMinimums(@RequestParam List<Integer> numbers, @RequestParam Integer quantifier) {
+    public ResponseEntity<MinResponse> calculateMinimums(@RequestParam List<Integer> numbers, @NotNull @RequestParam Integer quantifier) {
         MinRequest minRequest = new MinRequest(numbers, quantifier);
         return ResponseEntity.ok(mathService.calculateMin(minRequest));
     }
 
     @Override
     @GetMapping("/max")
-    public ResponseEntity<MaxResponse> calculateMaximums(@RequestParam List<Integer> numbers, @RequestParam Integer quantifier) {
+    public ResponseEntity<MaxResponse> calculateMaximums(@RequestParam List<Integer> numbers, @NotNull @RequestParam Integer quantifier) {
         MaxRequest maxRequest = new MaxRequest(numbers, quantifier);
         return ResponseEntity.ok(mathService.calculateMax(maxRequest));
     }
@@ -48,5 +49,15 @@ public class MathController implements MathApi {
         medianRequest.setNumbers(numbers);
 
         return ResponseEntity.ok(mathService.calculateMedian(medianRequest));
+    }
+
+    @Override
+    @GetMapping("/percentile")
+    public ResponseEntity<PercentileResponse> calculatePercentile(@RequestParam List<Integer> numbers, @NotNull @RequestParam Integer quantifier) {
+        PercentileRequest percentileRequest = new PercentileRequest();
+        percentileRequest.setNumbers(numbers);
+        percentileRequest.setQuantifier(quantifier);
+
+        return ResponseEntity.ok(mathService.calculatePercentile(percentileRequest));
     }
 }

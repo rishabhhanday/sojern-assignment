@@ -1,9 +1,6 @@
 package com.sojern.assignment.api;
 
-import com.sojern.assignment.model.AvgResponse;
-import com.sojern.assignment.model.MaxResponse;
-import com.sojern.assignment.model.MedianResponse;
-import com.sojern.assignment.model.MinResponse;
+import com.sojern.assignment.model.*;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -15,4 +12,5 @@ public interface MathApi {
 
     ResponseEntity<AvgResponse> calculateAverage(List<Integer> numbers);
     ResponseEntity<MedianResponse> calculateMedian(List<Integer> numbers);
+    ResponseEntity<PercentileResponse> calculatePercentile(List<Integer> numbers, Integer quantifier);
 }

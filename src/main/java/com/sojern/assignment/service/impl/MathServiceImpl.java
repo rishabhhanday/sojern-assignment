@@ -88,6 +88,30 @@ public class MathServiceImpl implements MathService {
         return medianResponse;
     }
 
+    @Override
+    public PercentileResponse calculatePercentile(PercentileRequest percentileRequest) {
+        validate(percentileRequest.getNumbers());
+
+        List<Integer> numbers = percentileRequest.getNumbers();
+        numbers = numbers
+                .stream()
+                .filter(Objects::nonNull)
+                .distinct()
+                .collect(Collectors.toList());
+
+        numbers.sort(Integer::compareTo);
+
+        Integer quantifier = percentileRequest.getQuantifier();
+        double ordinalRank = (quantifier / 100.0) * (double) numbers.size();
+        double cielOrdinalValue = Math.ceil(ordinalRank);
+
+        Integer percentile = numbers.get((int) cielOrdinalValue - 1);
+        PercentileResponse percentileResponse = new PercentileResponse();
+        percentileResponse.setPercentile(percentile);
+
+        return percentileResponse;
+    }
+
 
     private void validate(List<Integer> numbers, Integer quantifier) {
         if (numbers.isEmpty()) {

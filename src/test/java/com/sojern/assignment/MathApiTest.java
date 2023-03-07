@@ -2,10 +2,7 @@ package com.sojern.assignment;
 
 import com.sojern.assignment.api.MathApi;
 import com.sojern.assignment.exception.InvalidRequestException;
-import com.sojern.assignment.model.AvgResponse;
-import com.sojern.assignment.model.MaxResponse;
-import com.sojern.assignment.model.MedianResponse;
-import com.sojern.assignment.model.MinResponse;
+import com.sojern.assignment.model.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +54,16 @@ public class MathApiTest {
 
         Assertions.assertEquals(200, actualResponse.getStatusCodeValue());
         Assertions.assertEquals(1.5, actualResponse.getBody().getMedian());
+    }
+
+    @Test
+    public void testPercentileApi() {
+        List<Integer> numbers = new ArrayList<>(Arrays.asList(12,15,17,18,26,34,57,65,68,69));
+        Integer quantifier = 25;
+        ResponseEntity<PercentileResponse> actualResponse = mathApi.calculatePercentile(numbers, quantifier);
+
+        Assertions.assertEquals(200, actualResponse.getStatusCodeValue());
+        Assertions.assertEquals(17, actualResponse.getBody().getPercentile());
     }
 
     @Test
