@@ -14,7 +14,7 @@ public class ImageControllerTest {
     private ImageController imageController;
 
     @Test
-    public void testImageApi(){
+    public void testImageApi() {
         ResponseEntity<byte[]> actualResponse = imageController.getImage();
 
         Assertions.assertEquals(200, actualResponse.getStatusCodeValue());
