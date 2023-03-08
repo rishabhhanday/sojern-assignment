@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: sojern-assignment
+  name: sojern-assignment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sojern-assignment
+  strategy: { }
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: sojern-assignment
+    spec:
+      containers:
+        - image: image-registry.openshift-image-registry.svc:5000/rishhabhhanday-dev/sojern-assignment
+          name: sojern-assignment
+          resources: { }
+status: { }

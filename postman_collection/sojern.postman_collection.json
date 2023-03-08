@@ -1,0 +1,205 @@
+{
+	"info": {
+		"_postman_id": "b56c9855-8750-48b3-8461-9a420a184664",
+		"name": "sojern",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Minimum",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/min?numbers=12,23&quantifier=4",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"min"
+					],
+					"query": [
+						{
+							"key": "numbers",
+							"value": "12,23"
+						},
+						{
+							"key": "quantifier",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/min?numbers=12,23&quantifier=4",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"min"
+					],
+					"query": [
+						{
+							"key": "numbers",
+							"value": "12,23"
+						},
+						{
+							"key": "quantifier",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "img",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/min?numbers=12,23&quantifier=4",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"min"
+					],
+					"query": [
+						{
+							"key": "numbers",
+							"value": "12,23"
+						},
+						{
+							"key": "quantifier",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "average",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/min?numbers=12,23&quantifier=4",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"min"
+					],
+					"query": [
+						{
+							"key": "numbers",
+							"value": "12,23"
+						},
+						{
+							"key": "quantifier",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Median",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/median?numbers=12,23&quantifier=4",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"median"
+					],
+					"query": [
+						{
+							"key": "numbers",
+							"value": "12,23"
+						},
+						{
+							"key": "quantifier",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Maximum",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/max?numbers=12,23&quantifier=4",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"max"
+					],
+					"query": [
+						{
+							"key": "numbers",
+							"value": "12,23"
+						},
+						{
+							"key": "quantifier",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "percentile",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/max?numbers=12,23&quantifier=4",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"max"
+					],
+					"query": [
+						{
+							"key": "numbers",
+							"value": "12,23"
+						},
+						{
+							"key": "quantifier",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
